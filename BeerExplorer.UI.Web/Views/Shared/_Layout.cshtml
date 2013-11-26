@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - Beer Explorer</title>
+        
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="/content/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/content/js/jquery.blockUI.js" type="text/javascript"></script>
+             
+        <link href='http://fonts.googleapis.com/css?family=Ribeye+Marrow' rel='stylesheet' type='text/css'>
+        <link href="/content/css/bootstrap.min.css" rel="stylesheet" />
+	    <link href="~/content/css/site.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <div class="top-text">
+                <img src="~/Content/img/beer-left.png" style="width:100px; height: 100px; float: left;" />
+                <span>Beer Explorer</span>
+                <img src="~/Content/img/beer-right.png" style="width:100px; height: 100px; float: right;"  />
+                <div style="clear: right"></div>
+            </div>
+        </header>
+        
+        @RenderBody()
+        
+        <footer>
+            <div class="footer-text">
+                <span>Developed by Volkan Paksoy</span>
+            </div>
+        </footer>
+    </body>
+</html>

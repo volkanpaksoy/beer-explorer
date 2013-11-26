@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerExplorer.DataLayer", "BeerExplorer.DataLayer\BeerExplorer.DataLayer.csproj", "{11CB5CBC-0D99-427E-864D-4D7A62BC7FA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerExplorer.UI.Web", "BeerExplorer.UI.Web\BeerExplorer.UI.Web.csproj", "{34066822-E713-476F-B4B4-0AA815F66130}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://technova.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BeerExplorer.DataLayer\\BeerExplorer.DataLayer.csproj
+		SccProjectName1 = BeerExplorer.DataLayer
+		SccLocalPath1 = BeerExplorer.DataLayer
+		SccProjectUniqueName2 = BeerExplorer.UI.Web\\BeerExplorer.UI.Web.csproj
+		SccProjectName2 = BeerExplorer.UI.Web
+		SccLocalPath2 = BeerExplorer.UI.Web
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11CB5CBC-0D99-427E-864D-4D7A62BC7FA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11CB5CBC-0D99-427E-864D-4D7A62BC7FA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11CB5CBC-0D99-427E-864D-4D7A62BC7FA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11CB5CBC-0D99-427E-864D-4D7A62BC7FA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34066822-E713-476F-B4B4-0AA815F66130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34066822-E713-476F-B4B4-0AA815F66130}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34066822-E713-476F-B4B4-0AA815F66130}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34066822-E713-476F-B4B4-0AA815F66130}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

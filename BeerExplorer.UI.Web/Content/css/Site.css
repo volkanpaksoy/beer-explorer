@@ -1,0 +1,142 @@
+﻿
+html { height: 100% }
+
+body { height: 100%; margin: 0; padding: 0 }
+
+img, object, embed { max-width: none; }
+
+#map_canvas { height: 100% }
+
+#map_canvas img {
+  max-width: none;
+}
+
+#map_canvas label { 
+  width: auto; display:inline; 
+}
+
+.top-text {
+    background-color: #009B48;
+    text-align:center;
+    font-family: 'Ribeye Marrow', cursive;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 100px; 
+    vertical-align:middle;
+}
+
+
+.footer-text {
+    background-color: #009B48;
+    text-align:center;
+    font-family: 'Ribeye Marrow', cursive;
+    font-size: 10px;
+    font-weight: bold;
+    vertical-align: central;
+}
+
+.panel {
+	padding:12px 14px 12px;
+	background-color:#F0F0F0;
+	border:1px solid #CCC;			
+	-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;
+	-moz-box-shadow:0 2px 4px rgba(0,0,0,0.1);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.1);box-shadow:0 2px 4px rgba(0,0,0,0.1);
+	margin-bottom:10px;
+    margin-right: 2px;
+    padding-right: 2px;
+}
+.panel h2 {
+	color:#222;
+}
+
+.info {
+    background-color: #ffcdb1;
+}
+
+
+input {
+    width: 200px;
+}
+
+label {
+    display: inline-block;
+}
+
+.caption {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+h2, p, ol, ul, li {
+    margin:0px;
+    padding:0px;
+    font-size:13px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+ 
+#container {
+    /* width:300px;    */
+    margin:auto;
+    margin-top:0px;
+}
+
+
+/************************************************************************************/
+/*                  --------- COLLAPSIBLE PANELS ----------                         */
+/* Source: http://www.webdevdoor.com/jquery/expandable-collapsible-panels-jquery/   */
+/************************************************************************************/
+.expandable-panel {
+    width:100%; 
+    position:relative;
+    min-height:50px;
+    overflow:auto;
+    margin-bottom: 20px;
+    border:1px solid #999;
+}   
+.expandable-panel-heading {
+    width:100%; 
+    cursor:pointer;
+    min-height:50px;
+    clear:both;
+    background-color:#E5E5E5;
+    position:relative;
+}
+.expandable-panel-heading:hover {
+    color:#666;
+}
+.expandable-panel-heading h2 {
+    padding:14px 10px 9px 15px; 
+    font-size:18px;
+    line-height:20px;
+}
+.expandable-panel-content { 
+    padding:0 15px 0 15px;
+    margin-top:-999px;
+}
+.expandable-panel-content p {
+    padding:4px 0 6px 0;
+}
+.expandable-panel-content p:first-child  {
+    padding-top:10px;
+}
+.expandable-panel-content p:last-child {
+    padding-bottom:15px;    
+}
+
+.expandable-panel-content label {
+    font-weight: bold;
+}
+
+.icon-close-open {
+    width:20px;
+    height:20px;
+    position:absolute;
+    background-image:url('/content/img/icon-close-open.png');
+    right:15px;
+}
+.header-active {
+    background-color:#D0D7F3;
+}
+/************************************************************************************/
+

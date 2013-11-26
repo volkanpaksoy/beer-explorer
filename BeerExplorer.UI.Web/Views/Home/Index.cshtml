@@ -1,0 +1,203 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+
+<div id="query" style="width:25%; height:80%; float:left; background-color:#F0F0F0;" >
+    <div class="panel info">
+        <div style="float:left; margin-right:15px;"><img src="/content/img/information.ico" /></div>
+        <div><i><strong>Please click on a brewery on the map to view the beers it produces.</strong></i></div>
+        
+    </div>
+    
+    <div class="panel">
+        <label class="caption">Brewery: </label><label id="breweryName">Not Selected</label>
+        <hr />
+
+        
+        
+        <label class="caption">Beers:</label>
+        <div id="beers">
+            <div id="container">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="map_canvas" style="width:75%; height:80%; float:right;"></div>
+
+
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key={ENTER YOUR GOOGLE MAPS API KEY HERE}&sensor=false">
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        initialize();
+
+        panelinit();
+    });
+</script>
+
+
+
+<script type="text/javascript">
+    
+
+    function initialize()
+    {
+        // var url = "/livedemos/beerexplorer/home/__getBreweryList/";
+        var url = "/home/__getBreweryList/";
+        $.blockUI({ message: '<h2><img src="/content/img/spinner.gif" /> Loading breweries. Please wait...</h2>' });
+
+        var mapOptions = {
+            center: new google.maps.LatLng(51.399, -0.087),
+            zoom: 3,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+        $.getJSON(url, function (data) {
+            breweryList = $.parseJSON(data);
+
+            for (var i in breweryList) {
+                var id = breweryList[i]['Id'];
+                var name = breweryList[i]['Name'];
+                var lat = breweryList[i]['Geo']['lat'];
+                var lng = breweryList[i]['Geo']['lng'];
+
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(lat, lng),
+                    map: map,
+                    title: name,
+                    breweryId: id
+                });
+
+                google.maps.event.addListener(marker, "click", function () {
+                    getBrewery(this.breweryId);
+
+                });
+            }
+        })
+        .done(function (json) {
+            $.unblockUI();
+        })
+    }
+
+    function getBrewery(breweryId)
+    {
+        // var url = "/livedemos/beerexplorer/home/__getBreweryDetails/" + breweryId;
+        var url = "/home/__getBreweryDetails/" + breweryId;
+        $.blockUI({ message: '<h2><img src="/content/img/spinner.gif" /> Loading brewery details. Please wait...</h2>' });
+
+        $.getJSON(url, function (data) {
+            brewery = $.parseJSON(data);
+            $("#breweryName").text(brewery.name);
+
+            totalpanels = brewery.beerList.length;
+            $('#container').empty();
+
+            $.each(brewery.beerList, function (index, obj) {
+                // console.log('<div class="expandable-panel" id="{0}"></div>'.format(obj.name));
+                var divHtml = '<div class="expandable-panel" id="cp-{0}"> \
+                                    <div class="expandable-panel-heading"> \
+                                        <h2>{1}<span class="icon-close-open" style="background-position: 0px 0px;"></span></h2> \
+                                    </div> \
+                                    <div class="expandable-panel-content"> \
+                                        <p><label>Description: </label><span> {2}</span></p> \
+                                        <p><label>Style: </label><span> {3}</span></p> \
+                                        <p><label>Category: </label><span> {4}</span></p> \
+                                        <p><label>Alcolohl by Volume (ABV): </label><span> {5}</span></p> \
+                                        <p><label>International Bitterness Units (IBU): </label><span> {6}</span></p> \
+                                        <p><label>Standard Reference Method (SRM): </label><span> {7}</span></p> \
+                                        <p><label>Universal Product Code (UPC): </label><span> {8}</span></p> \
+                                    </div> \
+                                </div>'
+
+                            .format((index+1), obj.name, obj.description, obj.style, obj.category, obj.abv, obj.ibu, obj.srm, obj.upc);
+
+                $('#container').append(divHtml);
+            })
+
+            panelinit();
+        })
+        .done(function (json) {
+            $.unblockUI();
+        })
+    }
+
+    // Format function source: http://journalofasoftwaredev.wordpress.com/2011/10/30/replicating-string-format-in-javascript/
+    String.prototype.format = function () {
+        var content = this;
+        for (var i = 0; i < arguments.length; i++) {
+            var replacement = '{' + i + '}';
+            content = content.replace(replacement, arguments[i]);
+        }
+        return content;
+    };
+
+    // Expandable panel source: http://www.webdevdoor.com/jquery/expandable-collapsible-panels-jquery/
+    /*-------------------- EXPANDABLE PANELS ----------------------*/
+    var panelspeed = 500; //panel animate speed in milliseconds
+    var totalpanels = 3; //total number of collapsible panels   
+    var defaultopenpanel = 0; //leave 0 for no panel open   
+    var accordian = false; //set panels to behave like an accordian, with one panel only ever open at once      
+
+    var panelheight = new Array();
+    var currentpanel = defaultopenpanel;
+    var iconheight = parseInt($('.icon-close-open').css('height'));
+    var highlightopen = true;
+
+    //Initialise collapsible panels
+    function panelinit() {
+        for (var i = 1; i <= totalpanels; i++) {
+            panelheight[i] = parseInt($('#cp-' + i).find('.expandable-panel-content').css('height'));
+            $('#cp-' + i).find('.expandable-panel-content').css('margin-top', -panelheight[i]);
+            if (defaultopenpanel == i) {
+                $('#cp-' + i).find('.icon-close-open').css('background-position', '0px -' + iconheight + 'px');
+                $('#cp-' + i).find('.expandable-panel-content').css('margin-top', 0);
+            }
+        }
+    }
+
+    $('.expandable-panel-heading').live('click', function () {
+        console.log('panel clicked');
+        var obj = $(this).next();
+        var objid = parseInt($(this).parent().attr('ID').substr(3, 2));
+        currentpanel = objid;
+        if (accordian == true) {
+            resetpanels();
+        }
+
+        if (parseInt(obj.css('margin-top')) <= (panelheight[objid] * -1)) {
+            obj.clearQueue();
+            obj.stop();
+            obj.prev().find('.icon-close-open').css('background-position', '0px -' + iconheight + 'px');
+            obj.animate({ 'margin-top': 0 }, panelspeed);
+            if (highlightopen == true) {
+                $('#cp-' + currentpanel + ' .expandable-panel-heading').addClass('header-active');
+            }
+        } else {
+            obj.clearQueue();
+            obj.stop();
+            obj.prev().find('.icon-close-open').css('background-position', '0px 0px');
+            obj.animate({ 'margin-top': (panelheight[objid] * -1) }, panelspeed);
+            if (highlightopen == true) {
+                $('#cp-' + currentpanel + ' .expandable-panel-heading').removeClass('header-active');
+            }
+        }
+    });
+
+    function resetpanels() {
+        for (var i = 1; i <= totalpanels; i++) {
+            if (currentpanel != i) {
+                $('#cp-' + i).find('.icon-close-open').css('background-position', '0px 0px');
+                $('#cp-' + i).find('.expandable-panel-content').animate({ 'margin-top': -panelheight[i] }, panelspeed);
+                if (highlightopen == true) {
+                    $('#cp-' + i + ' .expandable-panel-heading').removeClass('header-active');
+                }
+            }
+        }
+    }
+</script>
+
