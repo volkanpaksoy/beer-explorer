@@ -13,9 +13,6 @@
     <div class="panel">
         <label class="caption">Brewery: </label><label id="breweryName">Not Selected</label>
         <hr />
-
-        
-        
         <label class="caption">Beers:</label>
         <div id="beers">
             <div id="container">
@@ -28,7 +25,7 @@
 
 
 <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key={ENTER YOUR GOOGLE MAPS API KEY HERE}&sensor=false">
+      src="https://maps.googleapis.com/maps/api/js?key=@(System.Configuration.ConfigurationManager.AppSettings["GoogleMapsApiKey"]) &sensor=false">
 </script>
 
 <script type="text/javascript">
@@ -39,11 +36,7 @@
     });
 </script>
 
-
-
 <script type="text/javascript">
-    
-
     function initialize()
     {
         // var url = "/livedemos/beerexplorer/home/__getBreweryList/";
@@ -98,7 +91,6 @@
             $('#container').empty();
 
             $.each(brewery.beerList, function (index, obj) {
-                // console.log('<div class="expandable-panel" id="{0}"></div>'.format(obj.name));
                 var divHtml = '<div class="expandable-panel" id="cp-{0}"> \
                                     <div class="expandable-panel-heading"> \
                                         <h2>{1}<span class="icon-close-open" style="background-position: 0px 0px;"></span></h2> \

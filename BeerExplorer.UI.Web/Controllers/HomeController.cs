@@ -15,18 +15,18 @@ namespace BeerExplorer.UI.Web.Controllers
 		{
 			return View();
 		}
-
 		
 		public JsonResult __getBreweryList()
 		{
-			// BreweryRepository repo = new BreweryRepository();
-			// List<Brewery> breweryList = repo.GetBreweryList().ToList();
+			BreweryRepository repo = new BreweryRepository();
+			List<Brewery> breweryList = repo.GetBreweryList().ToList();
 
 			// For the initial screen we only need the name and coordinates of the brewery to mark them. So select and send only the required data
-			// string data = Newtonsoft.Json.JsonConvert.SerializeObject(breweryList.Where(b => b.Geo != null).Select(b => new { b.Id, b.Name, b.Geo }));
-
-			string data = "[{\"Id\":\"21st_amendment_brewery_cafe\",\"Name\":\"21st Amendment Brewery Cafe\",\"Geo\":{\"accuracy\":\"ROOFTOP\",\"lat\":37.7825,\"lng\":-122.393}}]";
+			string data = Newtonsoft.Json.JsonConvert.SerializeObject(breweryList.Where(b => b.Geo != null).Select(b => new { b.Id, b.Name, b.Geo }));
 			return Json(data, JsonRequestBehavior.AllowGet);
+
+			// For debugging purposes you can comment out database call and return the following JSON
+			// string data = "[{\"Id\":\"21st_amendment_brewery_cafe\",\"Name\":\"21st Amendment Brewery Cafe\",\"Geo\":{\"accuracy\":\"ROOFTOP\",\"lat\":37.7825,\"lng\":-122.393}}]";			
 		}
 
 		public JsonResult __getBreweryDetails(string id)
@@ -42,6 +42,5 @@ namespace BeerExplorer.UI.Web.Controllers
 			
 			return Json(data, JsonRequestBehavior.AllowGet);
 		}
-
 	}
 }
