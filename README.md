@@ -36,4 +36,5 @@ The rest of the database is intact. I don't want to upload a backup copy of it a
 Live demo
 ===========
 
-You can view a live demo of the application here: http://codeshowcase.net/livedemos/beerexplorer
+You can view a live demo of the application here: http://beerexplorer.me
+
