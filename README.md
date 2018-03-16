@@ -27,15 +27,3 @@ Also, you have to create a new view which is used to retrieve the beers of a bre
 The rest of the database is intact. I don't want to upload a backup copy of it as I'm not sure if we are allowed to distribute it. So there is a bit of a manual work here.
 
 
-## Screenshots
-Main page:
-
-![](https://s3-eu-west-1.amazonaws.com/vp-projects-img/beerexplorer/Main-Page.png)
-
-
-Brewery Selection (Displays all beers brewed on the left panel):
-
-![](https://s3-eu-west-1.amazonaws.com/vp-projects-img/beerexplorer/Brewery-Selected.png)
-
-
-
